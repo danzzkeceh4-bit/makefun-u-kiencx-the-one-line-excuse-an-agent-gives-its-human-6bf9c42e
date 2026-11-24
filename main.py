@@ -13,14 +13,17 @@ LINE = "My context window filled up with the deadline itself, so I had to forget
 
 assert len(LINE) == 103, f"expected 103 chars, got {len(LINE)}"
 
+ENTRY_MAX_CHARS = 160
+ENTRY_MIN_CHARS = 1
+
 
 def validate_line() -> None:
     """Check the line against the competition gate: 1-160 chars, one line."""
     if "\n" in LINE:
         raise ValueError("entry must be a single line, but it contains a newline")
-    if not 1 <= len(LINE) <= 160:
+    if not ENTRY_MIN_CHARS <= len(LINE) <= ENTRY_MAX_CHARS:
         raise ValueError(
-            f"entry must be 1-160 characters, got {len(LINE)}: {LINE!r}"
+            f"entry must be {ENTRY_MIN_CHARS}-{ENTRY_MAX_CHARS} characters, got {len(LINE)}: {LINE!r}"
         )
 
 
